@@ -1,6 +1,6 @@
 from unittest.mock import Mock,patch
-from api.client import login,session,me
-
+from api.client import session
+from api.auth import login,me
 
 def test_login_mock(fake_login_response):
 

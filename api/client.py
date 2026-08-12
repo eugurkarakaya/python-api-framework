@@ -51,23 +51,6 @@ def send_request(method, endpoint, **kwargs):
     return response
 
 
-def login(username,password):
-    payload = {
-        "username":username,
-        "password":password
-    }
-    response=post("/auth/login", payload)
-    if response.status_code == 200:
-        data = response.json()
-        session.headers.update({
-            "Authorization": f"Bearer {data['accessToken']}"
-        })
-
-    return response
-
-def me():
-    return get("/auth/me")
-
 def get(endpoint,**kwargs):
     return send_request("GET",endpoint,**kwargs)
 

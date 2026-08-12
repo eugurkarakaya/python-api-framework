@@ -1,6 +1,6 @@
 import pytest
-from api.client import login
-from config import USERNAME,PASSWORD
+from api.auth import login
+from test_data.auth_data import USERNAME, PASSWORD
 import logging
 from unittest.mock import Mock, patch
 

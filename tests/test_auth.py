@@ -1,7 +1,7 @@
 import pytest
 import requests
-from config import USERNAME, PASSWORD
-from api.client import login,me,get
+from api.auth import login,me
+from api.client import get
 from test_data.auth_data import LOGIN_CASES
 
 
@@ -16,7 +16,6 @@ def test_login(username,password,expected_status):
         assert "accessToken" in data
         assert "refreshToken" in data
 
-
 def test_get_current_user(authenticated):
     response=me()
     data=response.json()
@@ -25,13 +24,15 @@ def test_get_current_user(authenticated):
     assert "username" in data
     assert "email" in data
 
-def test_invalid_endpoint():
-    response= get("/auth/does-not-exist")
-    assert response.status_code == 404
+@pytest.mark.parametrize("endpoint, expected_status",
+                         [
+                             ("/auth/does-not-exist",404),
+                             ("/http/500",500)
+                         ])
 
-def test_server_error():
-    response = get("/http/500")
-    assert response.status_code == 500
+def test_endpoint_error(endpoint,expected_status):
+    response=get(endpoint)
+    assert response.status_code==expected_status
 
 def test_timeout(authenticated):
     with pytest.raises(requests.exceptions.Timeout):
