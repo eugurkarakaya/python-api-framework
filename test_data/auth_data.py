@@ -5,7 +5,5 @@ LOGIN_CASES = [
     ("emilys", "wrongpassword", 400),
 ]
 
-
-
 USERNAME = os.getenv("API_USERNAME", "emilys")
 PASSWORD = os.getenv("API_PASSWORD", "emilyspass")
