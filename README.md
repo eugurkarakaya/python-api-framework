@@ -6,7 +6,7 @@ The project focuses on building a maintainable API test automation structure wit
 
 GitHub Actions runs the mock test suite to avoid external API dependency and rate limiting in CI.
 
-## Features
+## Features:
 
 - API testing with Python and Requests
 - Reusable HTTP client with `requests.Session`
