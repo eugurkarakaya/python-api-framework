@@ -26,3 +26,4 @@ def test_current_user_mock(fake_login_response,fake_me_response):
         data=response.json()
         assert "id" in data
         assert "username" in data
+        assert data["username"] == "emilys"
